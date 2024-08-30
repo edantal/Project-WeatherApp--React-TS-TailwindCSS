@@ -29,6 +29,8 @@ This repository is using ReactJS, TypeScript and TailwindCSS. It runs on node 18
 
 ### API
 
+[Open Weather](https://openweathermap.org/api)
+
 ### Resources
 
 - [Tailwind CSS](https://tailwindcss.com)

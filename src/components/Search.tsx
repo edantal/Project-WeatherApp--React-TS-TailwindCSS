@@ -1,55 +1,22 @@
-import { useState, ChangeEvent, useEffect } from 'react'
-
+import { ChangeEvent } from 'react'
+import { optionType } from '../types'
 import SearchLineIcon from 'remixicon-react/SearchLineIcon'
 
-import { optionType } from './types'
+type Props = {
+  term: string
+  options: []
+  onInputChange: (e: ChangeEvent<HTMLInputElement>) => void
+  onOptionSelect: (option: optionType) => void
+  onSubmit: () => void
+}
 
-const App = (): JSX.Element => {
-  const [term, setTerm] = useState<string>('')
-  const [loc, setLoc] = useState<optionType | null>(null)
-  const [options, setOptions] = useState<[]>([])
-
-  const getSearchOptions = (value: string) => {
-    fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=5&appid=${process.env.REACT_APP_API_KEY}`
-    )
-      .then(res => res.json())
-      .then(data => setOptions(data))
-  }
-
-  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    setTerm(value)
-
-    if (value === '') return
-
-    getSearchOptions(value.trim())
-  }
-
-  const onOptionSelect = (option: optionType) => {
-    setLoc(option)
-  }
-
-  const getForecast = (loc: optionType) => {
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${loc.lat}&lon=${loc.lon}&units=metric&appid=${process.env.REACT_APP_API_KEY}`
-    )
-      .then(res => res.json())
-      .then(data => console.log({ data }))
-  }
-
-  const onSubmit = () => {
-    if (!loc) return
-    getForecast(loc)
-  }
-
-  useEffect(() => {
-    if (loc) {
-      setTerm(loc.name)
-      setOptions([])
-    }
-  }, [loc])
-
+const Search = ({
+  term,
+  options,
+  onInputChange,
+  onOptionSelect,
+  onSubmit,
+}: Props): JSX.Element => {
   return (
     <main className='flex justify-center items-center bg-gradient-to-br from-sky-400 via-rose-400 to-lime-400 h-[100vh] w-full'>
       <section className='w-full md:max-w-[700px] h-full lg:h-[600px] flex flex-col items-center justify-center p-4 md:px-10 lg:p-24 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg rounded text-center text-zinc-700'>
@@ -97,4 +64,4 @@ const App = (): JSX.Element => {
   )
 }
 
-export default App
+export default Search

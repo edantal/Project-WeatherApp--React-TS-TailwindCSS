@@ -41,6 +41,7 @@ const useForecast = () => {
         console.log({ forecastData })
         setForecast(forecastData)
       })
+      .catch(e => console.log(e))
   }
 
   const onSubmit = () => {

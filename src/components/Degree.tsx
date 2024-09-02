@@ -1,6 +1,6 @@
 type Props = {
   temp: number
-  fn?: string
+  fn?: 'up' | 'down'
 }
 
 const Degree = ({ temp, fn }: Props): JSX.Element => (

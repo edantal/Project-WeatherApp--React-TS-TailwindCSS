@@ -18,7 +18,7 @@ const Search = ({
   onSubmit,
 }: Props): JSX.Element => {
   return (
-    <section className='w-full md:max-w-[700px] h-full lg:h-[600px] flex flex-col items-center justify-center p-4 md:px-10 lg:p-24 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg rounded text-center text-zinc-700'>
+    <section className='w-full md:max-w-[700px] h-full lg:h-[600px] flex flex-col items-center justify-center p-4 md:px-10 lg:p-24 bg-white bg-opacity-20 backdrop-blur-lg drop-shadow-lg rounded-xl text-center text-white'>
       <h1 className='text-4xl font-extralight'>
         Die <span className='font-extrabold'>Wettervorhersage</span>
       </h1>
@@ -30,7 +30,7 @@ const Search = ({
         <input
           type='text'
           value={term}
-          className='px-2 py-1 rounded-l-md border-2 border-white placeholder:font-light placeholder:text-sm placeholder:italic'
+          className='px-2 py-1 rounded-l-md border-2 border-white text-zinc-700 placeholder:font-light placeholder:text-sm placeholder:italic'
           placeholder='Ort...'
           onChange={onInputChange}
         />

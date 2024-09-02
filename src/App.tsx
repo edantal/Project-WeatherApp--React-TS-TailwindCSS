@@ -6,7 +6,11 @@ const App = (): JSX.Element => {
   const { term, options, forecast, onInputChange, onOptionSelect, onSubmit } =
     useForecast()
   return (
-    <main className='flex justify-center items-center bg-gradient-to-br from-sky-400 via-rose-400 to-lime-400 h-[100vh] w-full'>
+    <main
+      className={`flex justify-center items-center h-[100vh] w-full ${
+        forecast ? `bg-${forecast.list[0].weather[0].main}` : 'bg-main'
+      } bg-cover bg-no-repeat bg-fixed`}
+    >
       {forecast ? (
         <Forecast forecast={forecast} />
       ) : (

@@ -42,6 +42,6 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.2.4",
-    "remixicon-react": "^1.0.0"
+    "@remixicon/react": "^4.2.0"
   }
 }

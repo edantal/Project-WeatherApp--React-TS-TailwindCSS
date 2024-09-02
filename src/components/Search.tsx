@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
 import { optionType } from '../types'
-import SearchLineIcon from 'remixicon-react/SearchLineIcon'
+import { RiSearchLine } from '@remixicon/react'
 
 type Props = {
   term: string
@@ -55,7 +55,7 @@ const Search = ({
           className='flex px-2 py-1 rounded-r-md border-2 border-zinc-100 hover:border-zinc-700 bg-transparent hover:bg-zinc-700 text-white hover:text-white cursor-pointer transition-all'
           onClick={onSubmit}
         >
-          <SearchLineIcon className='mr-1' /> Suchen
+          <RiSearchLine className='mr-1' /> Suchen
         </button>
       </div>
     </section>

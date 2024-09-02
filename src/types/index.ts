@@ -6,7 +6,7 @@ export type optionType = {
   lon: number
 }
 
-export type forcastType = {
+export type forecastType = {
   name: string
   country: string
   sunrise: number

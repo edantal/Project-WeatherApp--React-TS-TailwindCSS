@@ -1,11 +1,11 @@
 import { useState, useEffect, ChangeEvent } from 'react'
-import { forcastType, optionType } from '../types'
+import { forecastType, optionType } from '../types'
 
 const useForecast = () => {
   const [term, setTerm] = useState<string>('')
   const [loc, setLoc] = useState<optionType | null>(null)
   const [options, setOptions] = useState<[]>([])
-  const [forecast, setForecast] = useState<forcastType | null>(null)
+  const [forecast, setForecast] = useState<forecastType | null>(null)
 
   const getSearchOptions = (value: string) => {
     fetch(

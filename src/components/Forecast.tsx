@@ -17,8 +17,12 @@ type Props = {
 
 const Forecast = ({ forecast }: Props): JSX.Element => {
   const today = forecast.list[0]
+  console.log(today.weather[0].main.toLowerCase())
 
   return (
+    // <div
+    //   className={`flex justify-center items-center h-[100vh] w-full ${bgImg} bg-cover bg-no-repeat bg-fixed`}
+    // >
     <div className='w-full h-full lg:h-auto md:max-w-[700px] py-4 md:py-4 md:px-10 lg:px-24 bg-white bg-opacity-20 backdrop-blur-lg rounded drop-shadow-lg'>
       <div className='mx-auto w-[300px]'>
         {/* HEADING */}
@@ -128,6 +132,7 @@ const Forecast = ({ forecast }: Props): JSX.Element => {
         </section>
       </div>
     </div>
+    // </div>
   )
 }
 

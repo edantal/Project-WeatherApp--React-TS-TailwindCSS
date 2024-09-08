@@ -8,7 +8,13 @@ import {
 } from '@remixicon/react'
 
 type Props = {
-  icon: 'wind' | 'feels' | 'humidity' | 'visibility' | 'pressure' | 'pop'
+  icon:
+    | 'wind'
+    | 'feelslike'
+    | 'humidity'
+    | 'visibility'
+    | 'pressure'
+    | 'precipitation'
   title: string
   info: string | JSX.Element
   description: string
@@ -16,11 +22,11 @@ type Props = {
 
 const icons = {
   wind: RiWindyLine,
-  feels: RiTempColdLine,
+  feelslike: RiTempColdLine,
   humidity: RiWaterPercentLine,
   visibility: RiEyeLine,
   pressure: RiSpeedUpFill,
-  pop: RiContrastDrop2Line,
+  precipitation: RiContrastDrop2Line,
 }
 
 const Tile = ({ icon, title, info, description }: Props): JSX.Element => {

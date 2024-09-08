@@ -15,9 +15,56 @@ type Props = {
   forecast: forecastType
 }
 
+export const TEXTS = {
+  overview: {
+    highestTempText: 'H',
+    lowestTempText: 'L',
+    nowText: 'Now',
+  },
+  details: {
+    wind: {
+      name: 'Wind',
+      info: (windSpeed: number) => `${Math.round(windSpeed)} km/h`,
+      description: (windDirection: number, gustsSpeed: number) =>
+        `Wind direction ${getWindDirection(
+          Math.round(windDirection)
+        )}, Gusts ${gustsSpeed.toFixed(1)} km/h`,
+    },
+    feelsLike: {
+      name: 'Feels Like',
+      description: (feelsLike: number, temp: number) =>
+        `Feels ${
+          Math.round(feelsLike) < Math.round(temp) ? 'colder' : 'warmer'
+        }`,
+    },
+    humidity: {
+      name: 'Humidity',
+      info: (humidity: number) => `${humidity}%`,
+      description: (humidity: number) => getHumidityValue(humidity),
+    },
+    precipitation: {
+      name: 'Precipitation',
+      info: (pop: number) => `${Math.round(pop * 1000)}%`,
+      description: (pop: number, clouds: number) =>
+        `${getPop(pop)}, clouds at ${clouds}%`,
+    },
+    pressure: {
+      name: 'Pressure',
+      info: (pressure: number) => `${pressure} hPa`,
+      description: (pressure: number) =>
+        `${Math.round(pressure) < 1013 ? 'Lower' : 'Higher'} than standard`,
+    },
+    visibility: {
+      name: 'Visibility',
+      info: (visibility: number) => `${(visibility / 1000).toFixed()}km`,
+      description: (visibility: number) => getVisibilityValue(visibility),
+    },
+  },
+}
+
 const Forecast = ({ forecast }: Props): JSX.Element => {
   const today = forecast.list[0]
-  console.log(today.weather[0].main.toLowerCase())
+  // console.log(today.weather[0].main.toLowerCase())
 
   return (
     <div className='w-full h-full lg:h-auto md:max-w-[700px] py-4 md:py-4 md:px-10 lg:px-24 bg-white bg-opacity-20 backdrop-blur-lg rounded drop-shadow-lg'>
@@ -36,7 +83,9 @@ const Forecast = ({ forecast }: Props): JSX.Element => {
             <span className='font-thin'>({today.weather[0].description})</span>
           </p>
           <p className='text-sm'>
-            H: <Degree temp={today.main.temp_max} fn='up' /> / L:{' '}
+            {TEXTS.overview.highestTempText}:{' '}
+            <Degree temp={today.main.temp_max} fn='up' /> /{' '}
+            {TEXTS.overview.lowestTempText}:{' '}
             <Degree temp={today.main.temp_min} fn='down' />
           </p>
         </section>
@@ -49,7 +98,9 @@ const Forecast = ({ forecast }: Props): JSX.Element => {
               key={i}
             >
               <p className='text-sm'>
-                {i === 0 ? 'Now' : new Date(item.dt * 1000).getHours()}
+                {i === 0
+                  ? TEXTS.overview.nowText
+                  : new Date(item.dt * 1000).getHours()}
               </p>
               <img
                 src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
@@ -64,67 +115,69 @@ const Forecast = ({ forecast }: Props): JSX.Element => {
 
         {/* DETAILS */}
         <section className='flex flex-wrap justify-between text-zinc-700'>
-          {/* sunrise */}
           <div className='w-[140px] text-xs font-bold flex flex-col items-center bg-white/20 backdrop-blur-lg rounded drop-shadow-lg py-4 mb-5'>
             <Sunrise />
             <span className='mt-2'>{getSunTime(forecast.sunrise)}</span>
           </div>
 
-          {/* sunset */}
           <div className='w-[140px] text-xs font-bold flex flex-col items-center bg-white/20 backdrop-blur-lg rounded drop-shadow-lg py-4 mb-5'>
             <Sunset />
             <span className='mt-2'>{getSunTime(forecast.sunset)}</span>
           </div>
 
-          {/* wind */}
           <Tile
             icon='wind'
-            title='Wind'
-            info={`${Math.round(today.wind.speed)} km/h`}
-            description={`Wind direction ${getWindDirection(
-              Math.round(today.wind.deg)
-            )}, Gusts ${today.wind.gust.toFixed(1)} km/h`}
+            title={TEXTS.details.wind.name}
+            info={TEXTS.details.wind.info(today.wind.speed)}
+            description={TEXTS.details.wind.description(
+              today.wind.deg,
+              today.wind.gust
+            )}
           />
-          {/* feels like */}
+
           <Tile
-            icon='feels'
-            title='Feels Like'
+            icon='feelslike'
+            title={TEXTS.details.feelsLike.name}
             info={<Degree temp={today.main.feels_like} />}
-            description={`Feels ${
-              Math.round(today.main.feels_like) < Math.round(today.main.temp)
-                ? 'colder'
-                : 'warmer'
-            }`}
+            description={TEXTS.details.feelsLike.description(
+              today.main.feels_like,
+              today.main.temp
+            )}
           />
-          {/* humidity */}
+
           <Tile
             icon='humidity'
-            title='Humidity'
-            info={`${today.main.humidity}%`}
-            description={getHumidityValue(today.main.humidity)}
+            title={TEXTS.details.humidity.name}
+            info={TEXTS.details.humidity.info(today.main.humidity)}
+            description={TEXTS.details.humidity.description(
+              today.main.humidity
+            )}
           />
-          {/* precipitation */}
+
           <Tile
-            icon='pop'
-            title='Precipitation'
-            info={`${Math.round(today.pop * 1000)}%`}
-            description={`${getPop(today.pop)}, clouds at ${today.clouds.all}%`}
+            icon='precipitation'
+            title={TEXTS.details.precipitation.name}
+            info={TEXTS.details.precipitation.info(today.pop)}
+            description={TEXTS.details.precipitation.description(
+              today.pop,
+              today.clouds.all
+            )}
           />
-          {/* pressure */}
+
           <Tile
             icon='pressure'
-            title='Pressure'
-            info={`${today.main.pressure} hPa`}
-            description={`${
-              Math.round(today.main.pressure) < 1013 ? 'Lower' : 'Higher'
-            } than standard`}
+            title={TEXTS.details.pressure.name}
+            info={TEXTS.details.pressure.info(today.main.pressure)}
+            description={TEXTS.details.pressure.description(
+              today.main.pressure
+            )}
           />
-          {/* visibility */}
+
           <Tile
             icon='visibility'
-            title='Visibility'
-            info={`${(today.visibility / 1000).toFixed()}km`}
-            description={getVisibilityValue(today.visibility)}
+            title={TEXTS.details.visibility.name}
+            info={TEXTS.details.visibility.info(today.visibility)}
+            description={TEXTS.details.visibility.description(today.visibility)}
           />
         </section>
       </div>

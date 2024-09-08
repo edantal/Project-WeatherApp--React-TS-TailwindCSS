@@ -1,4 +1,5 @@
 import { useState, useEffect, ChangeEvent } from 'react'
+
 import { forecastType, optionType } from '../types'
 
 const useForecast = () => {

@@ -37,8 +37,8 @@ This repository is using ReactJS, TypeScript and TailwindCSS. It runs on node 18
 
 ### Preview
 
-[View Design: Search Page](https://raw.githubusercontent.com/edantal/Project-WeatherApp--React-TS-TailwindCSS/main/preview-search-page.jpg)
-[View Design: Results Page](https://raw.githubusercontent.com/edantal/Project-WeatherApp--React-TS-TailwindCSS/main/preview-results-page.jpg)
+- [View Design: Search Page](https://raw.githubusercontent.com/edantal/Project-WeatherApp--React-TS-TailwindCSS/main/preview-[search].jpg)
+- [View Design: Results Page](https://raw.githubusercontent.com/edantal/Project-WeatherApp--React-TS-TailwindCSS/main/preview-[results].jpg)
 
 <!--
 

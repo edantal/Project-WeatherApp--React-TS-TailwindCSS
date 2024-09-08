@@ -27,7 +27,7 @@ export type forecastType = {
           main: string
           icon: string
           description: string
-        }
+        },
       ]
       wind: {
         speed: number
@@ -39,6 +39,6 @@ export type forecastType = {
       }
       pop: number
       visibility: number
-    }
+    },
   ]
 }

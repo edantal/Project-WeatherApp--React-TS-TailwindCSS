@@ -1,6 +1,8 @@
 import { ChangeEvent } from 'react'
-import { optionType } from '../types'
+
 import { RiSearchLine } from '@remixicon/react'
+
+import { optionType } from '../types'
 
 type Props = {
   term: string

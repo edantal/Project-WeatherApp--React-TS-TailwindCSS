@@ -12,14 +12,14 @@ const App = (): JSX.Element => {
     weather === 'clear'
       ? 'bg-clear'
       : weather === 'rain'
-      ? 'bg-rain'
-      : weather === 'snow'
-      ? 'bg-snow'
-      : weather === 'clouds'
-      ? 'bg-cloudy'
-      : weather === 'thunderstorm'
-      ? 'bg-thunderstorm'
-      : 'bg-main'
+        ? 'bg-rain'
+        : weather === 'snow'
+          ? 'bg-snow'
+          : weather === 'clouds'
+            ? 'bg-cloudy'
+            : weather === 'thunderstorm'
+              ? 'bg-thunderstorm'
+              : 'bg-main'
 
   return (
     <main

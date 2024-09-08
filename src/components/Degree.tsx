@@ -8,8 +8,8 @@ const Degree = ({ temp, fn }: Props): JSX.Element => (
     {fn === 'up'
       ? Math.ceil(temp)
       : fn === 'down'
-      ? Math.floor(temp)
-      : Math.round(temp)}
+        ? Math.floor(temp)
+        : Math.round(temp)}
     <sup className='absolute top-[.5em] text-[.5em]'>0</sup>
   </span>
 )

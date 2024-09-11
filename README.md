@@ -27,13 +27,31 @@ This repository is using ReactJS, TypeScript and TailwindCSS. It runs on node 18
 
 - Run `npm start` and navigate to [http://localhost:3000](http://localhost:3000)
 
-### API
+---
 
-[Open Weather](https://openweathermap.org/api)
+<details>
+  <summary>Resources</summary>
 
-### Resources
+- [Open Weather API](https://openweathermap.org/api)
+  - [Forecast Endpoint](https://openweathermap.org/forecast16)
+    
+    ```
+    https://api.openweathermap.org/data/2.5/forecast/daily?lat={lat}&lon={lon}&units=metric&appid={API key}
+    ```
+  - [Geocoding Endpoint]()
 
-- [Tailwind CSS](https://tailwindcss.com)
+    ```
+    http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+    ```
+- [TailwindCSS](https://tailwindcss.com)
+- [Remix Icon](https://remixicon.com)
+- [Pexels](https://www.pexels.com) - Free license images
+- [Prettier](https://prettier.io)
+- [ESLint](https://eslint.org)
+
+</details>
+
+---
 
 ### Preview
 
